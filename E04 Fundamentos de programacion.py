@@ -74,7 +74,7 @@ def buscar_zapatillas_reservadas():
     for usuario in usuarios_con_reserva:
         if usuario["nombre"] == nombre_buscado:
             nombre_encontrado = True
-            print(f"Reserva encontrada: {nombre_buscado} - {usuario["cantidad_de_reservas"]} par(es) ({usuario["categoria"]})")
+            print(f"Reserva encontrada: {nombre_buscado} - {usuario['cantidad_de_reservas']} par(es) ({usuario['categoria']})")
             while True:
                 opcion = input("\n¿Desea pagar adicional para VIP y reservar 2 pares? (si/no): ")
                 
