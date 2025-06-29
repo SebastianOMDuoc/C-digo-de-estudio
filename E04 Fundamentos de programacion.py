@@ -63,6 +63,7 @@ def reservar_zapatillas():
         usuarios_con_reserva.append(usuario)
         stock_reserva[0] -= 1
         stock_reserva[1] += 1
+        break
     else:
         print("No hay stock disponible para reserva.")
     
