@@ -63,7 +63,6 @@ def reservar_zapatillas():
         usuarios_con_reserva.append(usuario)
         stock_reserva[0] -= 1
         stock_reserva[1] += 1
-        break
     else:
         print("No hay stock disponible para reserva.")
     
@@ -76,20 +75,24 @@ def buscar_zapatillas_reservadas():
         if usuario["nombre"] == nombre_buscado:
             nombre_encontrado = True
             print(f"Reserva encontrada: {nombre_buscado} - {usuario['cantidad_de_reservas']} par(es) ({usuario['categoria']})")
-            while True:
-                opcion = input("\n¿Desea pagar adicional para VIP y reservar 2 pares? (si/no): ")
-                
-                match opcion:
-                    case "si":
-                        usuario["cantidad_de_reservas"] = 2
-                        usuario["categoria"] = "VIP"
-                        stock_reserva[0] -= 1
-                        stock_reserva[1] += 1
-                    case "no":
-                        print("Manteniendo reserva actual.")
-                        break
-                    case _:
-                        print("Opcion inválida. Por favor, intente nuevamente.")
+            if stock_reserva[0] > 0:
+                while True:
+                    opcion = input("\n¿Desea pagar adicional para VIP y reservar 2 pares? (si/no): ")
+                    
+                    match opcion:
+                        case "si":
+                            usuario["cantidad_de_reservas"] = 2
+                            usuario["categoria"] = "VIP"
+                            stock_reserva[0] -= 1
+                            stock_reserva[1] += 1
+                            break
+                        case "no":
+                            print("Manteniendo reserva actual.")
+                            break
+                        case _:
+                            print("Opcion inválida. Por favor, intente nuevamente.")
+            else:
+                print("No hay stock para upgrade a VIP.")
     if not nombre_encontrado:
         print(f"El usuario {nombre_buscado} no tiene reservas.")
 
